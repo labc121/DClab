@@ -1,0 +1,16 @@
+name_server = {
+    "google.com": "142.250.190.14",
+    "example.com": "93.184.216.34",
+    "localhost": "127.0.0.1",
+    "openai.com": "104.18.28.126"
+}
+def resolve(host):
+    if host in name_server:
+        print(f"{host} -> {name_server[host]}")
+    else:
+        print(f"{host} not found")
+while True:
+    host = input("Enter host name (or 'exit'): ")
+    if host == "exit":
+        break
+    resolve(host)
