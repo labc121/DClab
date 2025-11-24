@@ -1,0 +1,31 @@
+class Resource:
+    def __init__(self, name):
+        self.name = name
+        self.holder = None
+class Process:
+    def __init__(self, name):
+        self.name = name
+        self.resources = []
+    def request(self, resource):
+        if resource.holder is None:
+            resource.holder = self
+            self.resources.append(resource)
+            print(f"{self.name} got {resource.name}")
+        else:
+            print(f"{self.name} waiting for {resource.name}")
+def check_deadlock(p1, p2):
+    if (len(p1.resources) == 1 and len(p2.resources) == 1):
+        print("\nDeadlock Occurred: P1 and P2 waiting for each other")
+    else:
+        print("\nNo Deadlock")
+def main():
+    r1 = Resource("R1")
+    r2 = Resource("R2")
+    p1 = Process("P1")
+    p2 = Process("P2")
+    p1.request(r1)
+    p2.request(r2)
+    p1.request(r2)
+    p2.request(r1)
+    check_deadlock(p1, p2)
+main()
