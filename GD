@@ -1,0 +1,9 @@
+group = ["P1", "P2", "P3"]
+def send_message(sender, message):
+    print(f"\n{sender} sends message: '{message}'")
+    for member in group:
+        if member != sender:
+            print(f"{member} received message from {sender}")
+send_message("P1", "Hello Group!")
+send_message("P2", "Update completed")
+send_message("P3", "Acknowledged")
