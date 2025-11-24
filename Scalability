@@ -1,0 +1,18 @@
+import threading
+def work(wid, tid):
+    print(f"worker {wid} processing: task {tid}")
+   
+    print(f"worker {wid} finished: task {tid}")
+w = int(input("workers: "))
+t = int(input("tasks: "))
+thr = []
+k = 0   # worker index
+for i in range(t):
+    th = threading.Thread(target=work, args=(k, i))
+    thr.append(th)
+    th.start()
+    k = (k + 1) % w
+for th in thr:
+    th.join()
+
+print("All Tasks Processed")
