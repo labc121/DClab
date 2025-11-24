@@ -1,0 +1,14 @@
+clocks = {"P1": 10, "P2": 12, "P3": 14}
+print("Initial clocks:")
+for p, t in clocks.items():
+    print(f"{p}: {t} sec")
+avg = sum(clocks.values()) / len(clocks)
+print(f"\nAverage time: {avg:.2f} sec")
+print("\nAdjustments:")
+for p in clocks:
+    diff = avg - clocks[p]
+    print(f"{p} adjusts by {diff:+.2f} sec")
+    clocks[p] = avg
+print("\nSynchronized clocks:")
+for p, t in clocks.items():
+    print(f"{p}: {t:.2f} sec")
