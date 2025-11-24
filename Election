@@ -1,0 +1,16 @@
+processes = [4, 2, 7, 3, 5]
+failed = [3]
+n = len(processes)
+start = 0
+i = start
+print(f"Election started by process {processes[start]}")
+leader = processes[start]
+while True:
+    j = (i+1) % n
+    while processes[j] in failed: j = (j+1) % n
+    print(f"Process {processes[i]} passed message to process {processes[j]}")
+    leader = max(leader, processes[j])
+    i = j
+    if i == start: break
+
+print("Leader elected:", leader)
