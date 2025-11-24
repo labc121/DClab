@@ -1,0 +1,9 @@
+servers = input("Enter servers: ").split(",")
+n = len(servers)
+
+req = int(input("Enter number of requests: "))
+
+i = 0
+for r in range(1, req + 1):
+    print(f"r{r} → {servers[i]}")
+    i = (i + 1) % n
