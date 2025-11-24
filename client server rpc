@@ -1,0 +1,26 @@
+#server
+from xmlrpc.server import SimpleXMLRPCServer
+
+def add(x, y): return x + y
+def sub(x, y): return x - y
+def mul(x, y): return x * y
+def div(x, y): return x / y
+
+server = SimpleXMLRPCServer(("localhost", 8000))
+server.register_function(add, "add")
+server.register_function(sub, "sub")
+server.register_function(mul, "mul")
+server.register_function(div, "div")
+
+print("Server running...")
+server.serve_forever()
+
+#client
+import xmlrpc.client
+
+proxy = xmlrpc.client.ServerProxy("http://localhost:8000/")
+
+print("5 + 3 =", proxy.add(5, 3))
+print("5 - 3 =", proxy.sub(5, 3))
+print("5 * 3 =", proxy.mul(5, 3))
+print("5 / 3 =", proxy.div(5, 3))
