@@ -1,0 +1,27 @@
+#server
+import socket
+
+s = socket.socket()
+s.bind(("localhost", 12345))
+s.listen(1)
+
+print("Server waiting for client...")
+conn, addr = s.accept()
+print("Client connected:", addr)
+
+msg = conn.recv(1024).decode()
+print("Client says:", msg)
+
+conn.send("Server received your message".encode())
+conn.close()
+
+#client
+import socket
+
+c = socket.socket()
+c.connect(("localhost", 12345))
+
+c.send("Hello Server".encode())
+reply = c.recv(1024).decode()
+print("Server replies:", reply)
+c.close()
