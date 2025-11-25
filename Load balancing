@@ -7,3 +7,33 @@ i = 0
 for r in range(1, req + 1):
     print(f"r{r} → {servers[i]}")
     i = (i + 1) % n
+
+
+
+or
+class RR:
+    def __init__ (self,s):
+        self.s=s
+        self.i=0
+    def next(self):
+        x=self.s[self.i]
+        self.i =(self.i+1)%len(self.s)
+
+        return x
+    def add(self,x):
+        self.s.append(x)
+    def remove(self,x):
+        if x in self.s:
+            self.s.remove(x)
+            self.i%=len(self.s)
+s=input("servers:").split(",")
+lb=RR(s)
+op=input("add/remove/none:")
+if op=="add":
+    lb.add(input("server:"))
+elif op=="remove":
+    lb.remove(input("server:"))
+req=int(input("requests:"))
+for r in range(1, req + 1):
+    print(f"r{r} goes to {lb.next()}")
+
